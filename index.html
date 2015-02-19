@@ -1,0 +1,277 @@
+<html>
+	<head>
+		<title>Test</title>
+		<style type="text/css">
+		img {
+			max-width: 500px;
+
+		}
+
+		</style>
+
+	</head>
+	<body>
+		<h1>Preload test</h1>	
+		
+
+		
+		<script type="text/javascript" src="https://code.jquery.com/jquery-1.10.2.min.js" ></script>
+	
+
+
+		<div class="firstTest" >
+			<h1>2 Workin image with same ref and different callbacks: </h1>
+			<img data-lazy-src="http://bit.fieramilano.it/sites/default/files/logo%20bit2015.png" src="http://www.ajaxload.info/images/exemples/25.gif" />
+
+			<img data-lazy-src="http://bit.fieramilano.it/sites/default/files/logo%20bit2015.png" src="http://www.ajaxload.info/images/exemples/25.gif" data-lazy-callback="borderRed" />
+
+
+			
+		</div>
+
+		<div class="secondTest" >
+			<h1>Image 404 (should remain the loader, but the image border should become green)</h1>
+			<img  
+				data-lazy-callback="borderRed"  
+				data-lazy-src="http://www.kongtechnology.com/wp-content/uploads/see-how-your-google-results-measure-up-with-google-grader-video.jpg"  
+				src="http://www.ajaxload.info/images/exemples/25.gif"  
+				data-lazy-error-src="http://www.problogger.net/wp-content/uploads/2007/09/404-page-not-found.jpg" />
+		</div>
+
+		<div class="errorTest" >
+			<h1>Image 404 (should remain the loader, but the image border should become green)</h1>
+			<img 
+				data-lazy-src="http://www.kongtechnology.com/wp-content/uploads/see-how-your-google-results-measure-up-with-google-grader-videoadsd.jpg"  
+				src="http://www.ajaxload.info/images/exemples/25.gif"  
+				data-lazy-error-src="http://www.problogger.net/wp-content/uploads/2007/09/404-page-not-found.jpg" 
+				data-lazy-callback="borderGreen"
+			/>
+		</div>
+
+		<div class="thirdTest" >
+			<h1>do a for each (3 images should appears)</h1>
+			<img data-lazy-src="http://purrfectcatnames.com/wp-content/uploads/2013/11/Gray-Cat-MorgueFile-Nov16th-2013.jpg"  src="http://www.ajaxload.info/images/exemples/25.gif" />
+			<img data-lazy-src="http://www.nose2tail.co.uk/cat-matlock-derbyshire.jpg"    src="http://www.ajaxload.info/images/exemples/25.gif" />
+			<img data-lazy-src="http://animalpetdoctor.homestead.com/acat5.jpg"  src="http://www.ajaxload.info/images/exemples/25.gif" />
+		</div>
+
+		<div>end one</div>
+
+		 <script type="text/javascript">
+
+		// 	// ["http://www.problogger.net/wp-content/uploads/2007/09/404-page-not-found.jpg"].forEach(function(src){
+		// 	// 	new Image().src = src
+		// 	// })
+
+		// 	$(document).ready(function(){
+
+		// 		var $firstTest = $('.firstTest img');
+		// 		var $secondTest = $('.secondTest img');
+		// 		var $thirdTest = $('.thirdTest img');
+
+
+		// 		window.loadingImage = {};
+
+
+		// 		window.borderGreen = function(){
+		// 			console.log('borderGreen');
+		// 			$(this).css('border', '1px solid green');
+		// 		}
+		// 		window.borderRed = function(){
+		// 			console.log('borderRed');
+		// 			$(this).css('border', '1px solid red');
+		// 		}
+
+
+				
+
+		// 		var _exeCallback = function($this, success)
+		// 		{
+		// 			var callback = $this.attr('data-lazy-callback');
+		// 			console.log('callback: '+callback)
+		// 			if(typeof(callback) == 'string' )
+		// 				callback = window[callback];
+
+		// 			if(typeof(callback) === 'function'  )
+		// 			{
+		// 				callback.call($this.get(), success);
+		// 			}
+		// 			else{
+		// 				console.log("callback-empty");
+		// 			}
+		// 		}
+
+		// 		var _imageLoaded = function(success){
+		// 			var $this = $(this);
+		// 			$this.addClass("data-lazy-loaded");	
+		// 			window.srcLoaded[$this.attr('data-lazy-src')] = success;
+
+		// 			console.log('success/failuere: '+success);
+
+		// 			if(success){
+												
+		// 				$this.attr('src', $this.attr('data-lazy-src'))	
+		// 				$this.addClass("data-lazy-loaded-success");
+		// 			}else{
+		// 				$this.attr('src', $this.attr('data-lazy-error-src'))
+		// 				$this.addClass("data-lazy-loaded-error");
+		// 			}
+
+		// 			_exeCallback($this, success);
+		// 		}
+
+
+		// 		function changeUrls(){
+		// 			window.srcLoaded = {};
+
+		// 			$("img[data-lazy-src]").not(".data-lazy-loaded").each(function(){
+		// 				var $this = $(this);
+
+		// 				var _src2Load = $this.attr('src');
+
+		// 				if(!window.srcLoaded[_src2Load] && typeof(window.srcLoaded[_src2Load]) !== 'boolean'  ){
+		// 					console.log('not cached');
+
+							
+		// 					var image = new Image()
+		// 					image.src = _src2Load;
+
+		// 					$(image)
+		// 					.load(function(){
+		// 						console.log('load success');
+		// 						var images$ = $("img[data-lazy-src]").not(".data-lazy-loaded");
+		// 						images$.each(function(){
+		// 							_imageLoaded.call(this, true);	
+		// 						});
+		// 					 })
+		// 					.error(function(){
+		// 						console.log('load error');
+		// 						var images$ = $("img[data-lazy-src]").not(".data-lazy-loaded");
+		// 						images$.each(function(){
+		// 							_imageLoaded.call(this, false);	
+		// 						});
+		// 					});
+		// 				}else{
+		// 					console.log('cached');
+		// 					_imageLoaded.call(this, window.srcLoaded[_src2Load]);
+		// 				}
+		// 			})
+		// 		}
+		// 	});
+		 </script>
+		<script type="text/javascript">
+
+			var ImageLoader = (function ImageLoader(){
+				
+				this.images  = {};
+				this.getImagePromise = function(url){
+					if(!this.images[url])
+					{ 
+						 var imagePromise = new Promise(
+						    function(resolve, reject) 
+						    {  
+						    	console.log('getImagePromise');
+						    	var image = new Image()
+								image.src = url;
+								$(image)
+									.load(function(){
+										resolve(true);
+									 })
+									.error(function(){
+										resolve(false);
+									});
+						    }
+						);
+						this.images[url] = imagePromise;
+					}
+					
+					return this.images[url];
+				}
+
+				return this;
+			})();
+
+		</script>
+
+		<script type="text/javascript">
+			function changeUrls(){
+				$("img[data-lazy-src]").not(".data-lazy-loaded").each(function(){
+					
+					var $this = $(this);
+					var _src2Load = $this.attr('data-lazy-src');
+
+					var p = ImageLoader.getImagePromise(_src2Load);
+
+					p.then(function(success){
+						if(success)
+						{
+							$this.attr('src', _src2Load);
+						}
+						else
+						{
+							$this.attr('src', $this.attr('data-lazy-error-src'));	
+						}
+
+						$this.addClass('data-lazy-loaded');
+
+						var callbackName = $this.attr('data-lazy-callback');
+						
+						if(typeof(callbackName) === 'string'  && typeof(window[callbackName]) === 'function' ){
+							window[callbackName].call($this.get(), success);
+						}
+
+
+					})
+				});
+
+			}
+			changeUrls();
+
+		</script>
+
+		<script type="text/javascript">
+				$(document).ready(function(){
+
+					var $firstTest = $('.firstTest img');
+					var $secondTest = $('.secondTest img');
+					var $thirdTest = $('.thirdTest img');
+
+
+					window.borderGreen = function(){
+						console.log('borderGreen');
+						$(this).css('border', '1px solid green');
+					}
+					window.borderRed = function(){
+						console.log('borderRed');
+						$(this).css('border', '1px solid red');
+					}
+				});
+		</script>
+
+
+
+		<script>
+			function addImage(){
+					console.log(' ------ aftertimeout ------ ');
+
+					$('body').append('<img  data-lazy-src="http://www.kongtechnology.com/wp-content/uploads/see-how-your-google-results-measure-up-with-google-grader-videoadsd.jpg"   src="http://www.ajaxload.info/images/exemples/25.gif" data-lazy-error-src="http://www.problogger.net/wp-content/uploads/2007/09/404-page-not-found.jpg" data-lazy-callback="borderGreen" />')
+					.append('<img data-lazy-src="http://bit.fieramilano.it/sites/default/files/logo%20bit2015.png" src="http://www.ajaxload.info/images/exemples/25.gif" data-lazy-callback="borderRed" />')
+					.append('<img data-lazy-src="https://www.petfinder.com/wp-content/uploads/2012/11/122163343-conditioning-dog-loud-noises-632x475.jpg" src="http://www.ajaxload.info/images/exemples/25.gif" data-lazy-callback="borderRed" />');
+
+					changeUrls();
+
+				}
+
+				setTimeout(addImage, 10000);
+
+				setTimeout(addImage, 15000);
+		</script>
+
+
+
+		<div id="alert" ></div>
+
+	</body>
+
+
+</html>
