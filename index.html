@@ -95,7 +95,28 @@
 			
 		var ImagesLazyLoading = (function(){
 
-			var changeUrls =  function changeUrls(){
+			var settings = null;
+
+			var init = function(config){
+				 settings= $.extend(
+				 	{
+				 		'watch': false
+				 	}, 
+				 	config
+				 );
+
+				 changeUrls();
+				 
+				 if(!!settings.watch)
+				 {
+
+				 	watchDomChanges();
+				 }
+
+			};
+
+
+			function changeUrls(){
 				$("img[data-lazy-src]").not(".data-lazy-loaded").each(function(){
 					
 					var $this = $(this);
@@ -127,19 +148,58 @@
 
 			}
 
+			var observeDOM = (function(){
+			    var MutationObserver = window.MutationObserver || window.WebKitMutationObserver,
+			        eventListenerSupported = window.addEventListener;
+
+			    return function(obj, callback){
+			        if( MutationObserver ){
+			            // define a new observer
+			            var obs = new MutationObserver(function(mutations, observer){
+			                if( mutations[0].addedNodes.length || mutations[0].removedNodes.length )
+			                    callback();
+			            });
+
+			            console.log("obj: "+obj)
+			            // have the observer observe foo for changes in children
+			            obs.observe( obj, { childList:true, subtree:true });
+			        }
+			        else if( eventListenerSupported ){
+			            obj.addEventListener('DOMNodeInserted', callback, false);
+			            obj.addEventListener('DOMNodeRemoved', callback, false);
+			        }
+			    }
+			})();
+
+			
+
+			function watchDomChanges(){
+
+				console.log("watchDomChanges");
+				observeDOM( $('body').get(0) ,function(){ 
+					changeUrls();
+				});
+			}
+
+
 			return {
-				'init': changeUrls,
-				'refresh': changeUrls
+				'init': init,
+				'refresh': changeUrls,
 			}
 
 		})();
 		
-		ImagesLazyLoading.init();
-
+		
 		</script>
 
 		<script type="text/javascript">
 				$(document).ready(function(){
+
+					ImagesLazyLoading.init({
+						watch: true
+					});
+
+
 
 					var $firstTest = $('.firstTest img');
 					var $secondTest = $('.secondTest img');
@@ -167,7 +227,7 @@
 					.append('<img data-lazy-src="http://bit.fieramilano.it/sites/default/files/logo%20bit2015.png" src="http://www.ajaxload.info/images/exemples/25.gif" data-lazy-callback="borderRed" />')
 					.append('<img data-lazy-src="https://www.petfinder.com/wp-content/uploads/2012/11/122163343-conditioning-dog-loud-noises-632x475.jpg" src="http://www.ajaxload.info/images/exemples/25.gif" data-lazy-callback="borderRed" />');
 
-					ImagesLazyLoading.refresh();
+					//ImagesLazyLoading.refresh();
 
 				}
 
