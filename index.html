@@ -57,108 +57,6 @@
 
 		<div>end one</div>
 
-		 <script type="text/javascript">
-
-		// 	// ["http://www.problogger.net/wp-content/uploads/2007/09/404-page-not-found.jpg"].forEach(function(src){
-		// 	// 	new Image().src = src
-		// 	// })
-
-		// 	$(document).ready(function(){
-
-		// 		var $firstTest = $('.firstTest img');
-		// 		var $secondTest = $('.secondTest img');
-		// 		var $thirdTest = $('.thirdTest img');
-
-
-		// 		window.loadingImage = {};
-
-
-		// 		window.borderGreen = function(){
-		// 			console.log('borderGreen');
-		// 			$(this).css('border', '1px solid green');
-		// 		}
-		// 		window.borderRed = function(){
-		// 			console.log('borderRed');
-		// 			$(this).css('border', '1px solid red');
-		// 		}
-
-
-				
-
-		// 		var _exeCallback = function($this, success)
-		// 		{
-		// 			var callback = $this.attr('data-lazy-callback');
-		// 			console.log('callback: '+callback)
-		// 			if(typeof(callback) == 'string' )
-		// 				callback = window[callback];
-
-		// 			if(typeof(callback) === 'function'  )
-		// 			{
-		// 				callback.call($this.get(), success);
-		// 			}
-		// 			else{
-		// 				console.log("callback-empty");
-		// 			}
-		// 		}
-
-		// 		var _imageLoaded = function(success){
-		// 			var $this = $(this);
-		// 			$this.addClass("data-lazy-loaded");	
-		// 			window.srcLoaded[$this.attr('data-lazy-src')] = success;
-
-		// 			console.log('success/failuere: '+success);
-
-		// 			if(success){
-												
-		// 				$this.attr('src', $this.attr('data-lazy-src'))	
-		// 				$this.addClass("data-lazy-loaded-success");
-		// 			}else{
-		// 				$this.attr('src', $this.attr('data-lazy-error-src'))
-		// 				$this.addClass("data-lazy-loaded-error");
-		// 			}
-
-		// 			_exeCallback($this, success);
-		// 		}
-
-
-		// 		function changeUrls(){
-		// 			window.srcLoaded = {};
-
-		// 			$("img[data-lazy-src]").not(".data-lazy-loaded").each(function(){
-		// 				var $this = $(this);
-
-		// 				var _src2Load = $this.attr('src');
-
-		// 				if(!window.srcLoaded[_src2Load] && typeof(window.srcLoaded[_src2Load]) !== 'boolean'  ){
-		// 					console.log('not cached');
-
-							
-		// 					var image = new Image()
-		// 					image.src = _src2Load;
-
-		// 					$(image)
-		// 					.load(function(){
-		// 						console.log('load success');
-		// 						var images$ = $("img[data-lazy-src]").not(".data-lazy-loaded");
-		// 						images$.each(function(){
-		// 							_imageLoaded.call(this, true);	
-		// 						});
-		// 					 })
-		// 					.error(function(){
-		// 						console.log('load error');
-		// 						var images$ = $("img[data-lazy-src]").not(".data-lazy-loaded");
-		// 						images$.each(function(){
-		// 							_imageLoaded.call(this, false);	
-		// 						});
-		// 					});
-		// 				}else{
-		// 					console.log('cached');
-		// 					_imageLoaded.call(this, window.srcLoaded[_src2Load]);
-		// 				}
-		// 			})
-		// 		}
-		// 	});
-		 </script>
 		<script type="text/javascript">
 
 			var ImageLoader = (function ImageLoader(){
@@ -194,7 +92,10 @@
 		</script>
 
 		<script type="text/javascript">
-			function changeUrls(){
+			
+		var ImagesLazyLoading = (function(){
+
+			var changeUrls =  function changeUrls(){
 				$("img[data-lazy-src]").not(".data-lazy-loaded").each(function(){
 					
 					var $this = $(this);
@@ -225,7 +126,15 @@
 				});
 
 			}
-			changeUrls();
+
+			return {
+				'init': changeUrls,
+				'refresh': changeUrls
+			}
+
+		})();
+		
+		ImagesLazyLoading.init();
 
 		</script>
 
@@ -258,7 +167,7 @@
 					.append('<img data-lazy-src="http://bit.fieramilano.it/sites/default/files/logo%20bit2015.png" src="http://www.ajaxload.info/images/exemples/25.gif" data-lazy-callback="borderRed" />')
 					.append('<img data-lazy-src="https://www.petfinder.com/wp-content/uploads/2012/11/122163343-conditioning-dog-loud-noises-632x475.jpg" src="http://www.ajaxload.info/images/exemples/25.gif" data-lazy-callback="borderRed" />');
 
-					changeUrls();
+					ImagesLazyLoading.refresh();
 
 				}
 
