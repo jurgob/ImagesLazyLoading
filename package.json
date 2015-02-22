@@ -1,0 +1,20 @@
+{
+  "name": "ImagesLazyLoading",
+  "version": "1.0.0",
+  "description": "",
+  "main": "js/main.js",
+  "scripts": {
+    "start": "browserify js/main.js -o js/bundle.js",
+    "build": "browserify js/main.js | uglifyjs > js/bundle.min.js",
+    "test": "browserify js/main.js -o js/bundle.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "browserify": "^9.0.3",
+    "uglify-js": "^2.4.16"
+  },
+  "dependencies": {
+    "jquery": "^2.1.3"
+  }
+}
