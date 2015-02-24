@@ -1,0 +1,69 @@
+<html>
+	<head>
+		<title>Test</title>
+		<style type="text/css">
+		img {
+			max-width: 500px;
+
+		}
+
+		</style>
+
+	</head>
+	<body>
+		<h1>Preload test</h1>	
+		
+
+		
+	
+
+
+		<div class="firstTest" >
+			<h1>2 Workin image with same ref and different callbacks: </h1>
+			<img data-lazy-src="http://bit.fieramilano.it/sites/default/files/logo%20bit2015.png" src="http://www.ajaxload.info/images/exemples/25.gif" />
+
+			<img data-lazy-src="http://bit.fieramilano.it/sites/default/files/logo%20bit2015.png" src="http://www.ajaxload.info/images/exemples/25.gif" data-lazy-callback="borderRed" />
+
+
+			
+		</div>
+
+		<div class="secondTest" >
+			<h1>Image 404 (should remain the loader, but the image border should become green)</h1>
+			<img  
+				data-lazy-callback="borderRed"  
+				data-lazy-src="http://www.kongtechnology.com/wp-content/uploads/see-how-your-google-results-measure-up-with-google-grader-video.jpg"  
+				src="http://www.ajaxload.info/images/exemples/25.gif"  
+				data-lazy-error-src="http://www.problogger.net/wp-content/uploads/2007/09/404-page-not-found.jpg" />
+		</div>
+
+		<div class="errorTest" >
+			<h1>Image 404 (should remain the loader, but the image border should become green)</h1>
+			<img 
+				data-lazy-src="http://www.kongtechnology.com/wp-content/uploads/see-how-your-google-results-measure-up-with-google-grader-videoadsd.jpg"  
+				src="http://www.ajaxload.info/images/exemples/25.gif"  
+				data-lazy-error-src="http://www.problogger.net/wp-content/uploads/2007/09/404-page-not-found.jpg" 
+				data-lazy-callback="borderGreen"
+			/>
+		</div>
+
+		<div class="thirdTest" >
+			<h1>do a for each (3 images should appears)</h1>
+			<img data-lazy-src="http://purrfectcatnames.com/wp-content/uploads/2013/11/Gray-Cat-MorgueFile-Nov16th-2013.jpg"  src="http://www.ajaxload.info/images/exemples/25.gif" />
+			<img data-lazy-src="http://www.nose2tail.co.uk/cat-matlock-derbyshire.jpg"    src="http://www.ajaxload.info/images/exemples/25.gif" />
+			<img data-lazy-src="http://animalpetdoctor.homestead.com/acat5.jpg"  src="http://www.ajaxload.info/images/exemples/25.gif" />
+		</div>
+
+		<div>end one</div>
+
+		<script type="text/javascript" src="js/bundle.js" ></script>
+
+
+
+
+		<div id="alert" ></div>
+
+	</body>
+
+
+</html>
