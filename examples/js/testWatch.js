@@ -1,5 +1,5 @@
 var $ = require("jquery");
-var ImagesLazyLoading = require("./ImagesLazyLoading");
+var ImagesLazyLoading = require("../../ImagesLazyLoading");
 
 $(document).ready(function(){
 

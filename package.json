@@ -1,12 +1,19 @@
 {
   "name": "ImagesLazyLoading",
   "version": "1.0.0",
-  "description": "",
-  "main": "js/main.js",
+  "description": "Lazy loading image javascript plugin",
+  "main": "ImagesLazyLoading.js",
   "scripts": {
-    "start": "browserify js/main.js -o js/bundle.js",
-    "build": "browserify js/main.js | uglifyjs > js/bundle.min.js",
-    "test": "browserify js/main.js -o js/bundle.js"
+    "start": "browserify --standalone src/ImagesLazyLoading.js -o dist/ImagesLazyLoading.min.js",
+
+    "build": "browserify src/main.js | uglifyjs > dist/ImagesLazyLoading.min.js",
+    "test": "browserify src/main.js -o src/bundle.js",
+
+    "dist": "browserify standalone.js -o dist/ImagesLazyLoading.js && browserify standalone.js | uglifyjs > dist/ImagesLazyLoading.min.js",
+    "build_example1": "browserify examples/js/testRefresh.js -o examples/js/bundleTestRefresh.js",
+    "build_example2": "browserify examples/js/testWatch.js -o examples/js/bundleTestWatch.js",
+    "build_example3": "cp dist/ImagesLazyLoading.min.js examples/js/ImagesLazyLoading.min.js",
+    "build_examples": "npm run dist && npm run build_example1 && npm run build_example2 && npm run build_example3 "
   },
   "author": "",
   "license": "ISC",

@@ -135,7 +135,7 @@ var ImagesLazyLoading = (function(){
 module.exports = ImagesLazyLoading;
 },{"./ImageLoader.js":1,"jquery":4}],3:[function(require,module,exports){
 var $ = require("jquery");
-var ImagesLazyLoading = require("./ImagesLazyLoading");
+var ImagesLazyLoading = require("../../ImagesLazyLoading");
 
 $(document).ready(function(){
 
@@ -174,7 +174,7 @@ function addImage(){
 setTimeout(addImage, 10000);
 
 setTimeout(addImage, 15000);
-},{"./ImagesLazyLoading":2,"jquery":4}],4:[function(require,module,exports){
+},{"../../ImagesLazyLoading":2,"jquery":4}],4:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v2.1.3
  * http://jquery.com/

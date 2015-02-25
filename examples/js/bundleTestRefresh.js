@@ -139,9 +139,7 @@ var ImagesLazyLoading = require("../../ImagesLazyLoading");
 
 $(document).ready(function(){
 
-	ImagesLazyLoading.init({
-		watch: true
-	});
+	ImagesLazyLoading.init();
 
 
 
@@ -167,7 +165,7 @@ function addImage(){
 	.append('<img data-lazy-src="http://bit.fieramilano.it/sites/default/files/logo%20bit2015.png" src="http://www.ajaxload.info/images/exemples/25.gif" data-lazy-callback="borderRed" />')
 	.append('<img data-lazy-src="https://www.petfinder.com/wp-content/uploads/2012/11/122163343-conditioning-dog-loud-noises-632x475.jpg" src="http://www.ajaxload.info/images/exemples/25.gif" data-lazy-callback="borderRed" />');
 
-	//ImagesLazyLoading.refresh();
+	ImagesLazyLoading.refresh();
 
 }
 
