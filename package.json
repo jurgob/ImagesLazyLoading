@@ -4,11 +4,9 @@
   "description": "Lazy loading image javascript plugin",
   "main": "ImagesLazyLoading.js",
   "scripts": {
-    "start": "browserify --standalone src/ImagesLazyLoading.js -o dist/ImagesLazyLoading.min.js",
+    
 
-    "build": "browserify src/main.js | uglifyjs > dist/ImagesLazyLoading.min.js",
-    "test": "browserify src/main.js -o src/bundle.js",
-
+    "clean" :  "rm dist/* && rm examples/js/bundle* && rm examples/js/ImagesLazyLoading.min.js",
     "dist": "browserify standalone.js -o dist/ImagesLazyLoading.js && browserify standalone.js | uglifyjs > dist/ImagesLazyLoading.min.js",
     "build_example1": "browserify examples/js/testRefresh.js -o examples/js/bundleTestRefresh.js",
     "build_example2": "browserify examples/js/testWatch.js -o examples/js/bundleTestWatch.js",
