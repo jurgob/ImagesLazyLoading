@@ -11,10 +11,11 @@ ImagesLazyLoading.init()
 ###DOM Attributes:
 ```
 <img  
-				data-lazy-callback="borderRed"  
-				data-lazy-src="http://www.kongtechnology.com/wp-content/uploads/see-how-your-google-results-measure-up-with-google-grader-video.jpg"  
-				src="http://www.ajaxload.info/images/exemples/25.gif"  
-				data-lazy-error-src="http://www.problogger.net/wp-content/uploads/2007/09/404-page-not-found.jpg" />
+	data-lazy-callback="borderRed"  
+	data-lazy-src="http://www.kongtechnology.com/wp-content/uploads/see-how-your-google-results-measure-up-with-google-grader-video.jpg"  
+	src="http://www.ajaxload.info/images/exemples/25.gif"  
+	data-lazy-error-src="http://www.problogger.net/wp-content/uploads/2007/09/404-page-not-found.jpg" 
+/>
 ```				
 
 				
