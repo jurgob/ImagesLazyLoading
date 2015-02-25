@@ -8,6 +8,7 @@
 
     "clean" :  "rm dist/* && rm examples/js/bundle* && rm examples/js/ImagesLazyLoading.min.js",
     "dist": "browserify standalone.js -o dist/ImagesLazyLoading.js && browserify standalone.js | uglifyjs > dist/ImagesLazyLoading.min.js",
+    "deploy": "./deploy.sh",
     "build_example1": "browserify examples/js/testRefresh.js -o examples/js/bundleTestRefresh.js",
     "build_example2": "browserify examples/js/testWatch.js -o examples/js/bundleTestWatch.js",
     "build_example3": "cp dist/ImagesLazyLoading.min.js examples/js/ImagesLazyLoading.min.js",
